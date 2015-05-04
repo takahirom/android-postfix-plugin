@@ -1,0 +1,39 @@
+<idea-plugin version="2">
+    <id>com.kogitune.intellij.androidPostfixCompletion</id>
+    <name>Android Postfix Completion</name>
+    <version>1.0.0</version>
+    <vendor email="takam.dev@gmail.com" url="https://github.com/takahirom/android-postfix-plugin">Bob Browning</vendor>
+
+    <description><![CDATA[
+      Postfix completion templates for guava
+
+      <b>Available templates:</b><br/><br/>
+
+      <ul>
+        <li> <b>.toast</b><br/><em>Create and show Toast</em><br/><b>Toast.makeText(context, expr, Toast.LENGTH_SHORT).show();</b></li>
+      </ul>
+
+      <ul>
+        <li> <b>.log</b><br/><em>Log</em><br/><b>Log.d("log", expr);</b></li>
+      </ul>
+
+    ]]></description>
+
+    <change-notes><![CDATA[
+      * Initial release
+  ]]></change-notes>
+
+    <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
+    <idea-version since-build="141.177"/>
+
+    <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products -->
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <codeInsight.template.postfixTemplateProvider language="JAVA"
+                                                      implementationClass="com.kogitune.intellij.codeinsight.postfix.AndroidPostfixTemplateProvider"/>
+    </extensions>
+</idea-plugin>
