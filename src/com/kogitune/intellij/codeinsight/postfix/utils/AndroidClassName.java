@@ -20,34 +20,34 @@ import com.intellij.psi.PsiElement;
 import com.siyeh.ig.psiutils.ClassUtils;
 
 /**
- * Collection of static strings representing guava class names.
+ * Collection of static strings representing android class names.
  */
 public enum AndroidClassName {
-  TOAST("android.widget.Toast"),
-  LOG("android.util.Log"),
-  CONTEXT("android.content.Context"),;
+    TOAST("android.widget.Toast"),
+    LOG("android.util.Log"),
+    CONTEXT("android.content.Context"),;
 
 
-  private final String fqClassName;
+    private final String fqClassName;
 
-  AndroidClassName(String fqClassName) {
-    this.fqClassName = fqClassName;
-  }
+    AndroidClassName(String fqClassName) {
+        this.fqClassName = fqClassName;
+    }
 
-  public String getClassName() {
-    return fqClassName;
-  }
+    public String getClassName() {
+        return fqClassName;
+    }
 
-  public PsiClass getPsiClass(PsiElement context) {
-    return ClassUtils.findClass(fqClassName, context);
-  }
+    public PsiClass getPsiClass(PsiElement context) {
+        return ClassUtils.findClass(fqClassName, context);
+    }
 
-  public String getQualifiedStaticMethodName(String methodName) {
-    return fqClassName + "." + methodName;
-  }
+    public String getQualifiedStaticMethodName(String methodName) {
+        return fqClassName + "." + methodName;
+    }
 
-  @Override
-  public String toString() {
-    return fqClassName;
-  }
+    @Override
+    public String toString() {
+        return fqClassName;
+    }
 }
