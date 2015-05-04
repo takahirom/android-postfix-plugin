@@ -60,6 +60,6 @@ public class LogTemplate extends RichChooserStringBasedPostfixTemplate {
     @Override
     protected void setVariables(@NotNull Template template, @NotNull PsiElement element) {
         MacroCallNode node = new MacroCallNode(new TagMacro());
-        template.addVariable("TAG", node, new ConstantNode(""), true);
+        template.addVariable("TAG", node, new ConstantNode(""), false);
     }
 }

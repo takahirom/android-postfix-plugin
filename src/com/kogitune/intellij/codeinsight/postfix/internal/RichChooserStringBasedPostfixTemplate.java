@@ -18,7 +18,6 @@ package com.kogitune.intellij.codeinsight.postfix.internal;
 import com.intellij.codeInsight.template.postfix.util.JavaPostfixTemplatesUtils;
 import com.intellij.openapi.util.Condition;
 import com.intellij.psi.PsiElement;
-
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -26,14 +25,19 @@ import org.jetbrains.annotations.NotNull;
  */
 public abstract class RichChooserStringBasedPostfixTemplate extends AbstractRichStringBasedPostfixTemplate {
 
-  protected RichChooserStringBasedPostfixTemplate(@NotNull String name,
-                                                  @NotNull String example,
-                                                  @NotNull Condition<PsiElement> typeChecker) {
-    super(name, example, JavaPostfixTemplatesUtils.selectorAllExpressionsWithCurrentOffset(typeChecker));
-  }
+    protected RichChooserStringBasedPostfixTemplate(@NotNull String name,
+                                                    @NotNull String example,
+                                                    @NotNull Condition<PsiElement> typeChecker) {
+        super(name, example, JavaPostfixTemplatesUtils.selectorAllExpressionsWithCurrentOffset(typeChecker));
+    }
 
-  @Override
-  protected boolean shouldRemoveParent() {
-    return false;
-  }
+    @Override
+    protected boolean shouldRemoveParent() {
+        return false;
+    }
+
+    @Override
+    protected boolean shouldReformat() {
+        return false;
+    }
 }

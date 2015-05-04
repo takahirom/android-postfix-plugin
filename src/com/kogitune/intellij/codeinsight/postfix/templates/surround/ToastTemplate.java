@@ -48,20 +48,19 @@ public class ToastTemplate extends RichChooserStringBasedPostfixTemplate {
     }
 
     public ToastTemplate(@NotNull String alias) {
-
         super(alias, "Toast.makeText(context, expr, Toast.LENGTH_SHORT).show();", IS_NON_NULL_OBJECT);
     }
 
 
     @Override
     public String getTemplateString(@NotNull PsiElement element) {
-        return getStaticMethodPrefix(TOAST, "makeText", element) + "($context$, $expr$,Toast.LENGTH_SHORT).show();$END$";
+        return getStaticMethodPrefix(TOAST, "makeText", element) + "($context$, $expr$, Toast.LENGTH_SHORT).show();$END$";
     }
 
     @Override
     protected void setVariables(@NotNull Template template, @NotNull PsiElement element) {
         MacroCallNode node = new MacroCallNode(new VariableOfTypeMacro());
         node.addParameter(new ConstantNode(CONTEXT.toString()));
-        template.addVariable("context", node, new ConstantNode(""), true);
+        template.addVariable("context", node, new ConstantNode(""), false);
     }
 }
