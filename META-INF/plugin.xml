@@ -1,11 +1,11 @@
 <idea-plugin version="2">
     <id>com.kogitune.intellij.androidPostfixCompletion</id>
     <name>Android Postfix Completion</name>
-    <version>1.0.0</version>
-    <vendor email="takam.dev@gmail.com" url="https://github.com/takahirom/android-postfix-plugin">Bob Browning</vendor>
+    <version>1.0.1</version>
+    <vendor email="takam.dev@gmail.com" url="https://github.com/takahirom/android-postfix-plugin">takahirom</vendor>
 
     <description><![CDATA[
-      Postfix completion templates for Android
+      Postfix completion templates for Android<br/><br/>
 
       <b>Available templates:</b><br/><br/>
 
