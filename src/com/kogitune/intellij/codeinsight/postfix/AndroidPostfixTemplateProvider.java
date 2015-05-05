@@ -18,6 +18,7 @@ package com.kogitune.intellij.codeinsight.postfix;
 import com.intellij.codeInsight.template.postfix.templates.JavaPostfixTemplateProvider;
 import com.intellij.codeInsight.template.postfix.templates.PostfixTemplate;
 import com.intellij.util.containers.ContainerUtil;
+import com.kogitune.intellij.codeinsight.postfix.templates.surround.LogDTemplate;
 import com.kogitune.intellij.codeinsight.postfix.templates.surround.LogTemplate;
 import com.kogitune.intellij.codeinsight.postfix.templates.surround.ToastTemplate;
 import org.jetbrains.annotations.NotNull;
@@ -36,7 +37,9 @@ public class AndroidPostfixTemplateProvider extends JavaPostfixTemplateProvider 
 
     public AndroidPostfixTemplateProvider() {
         templates = ContainerUtil.<PostfixTemplate>newHashSet(
-                new ToastTemplate(), new LogTemplate()
+                new ToastTemplate(),
+                new LogTemplate(),
+                new LogDTemplate()
         );
     }
 

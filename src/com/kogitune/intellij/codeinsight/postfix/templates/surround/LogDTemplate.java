@@ -18,8 +18,12 @@ package com.kogitune.intellij.codeinsight.postfix.templates.surround;
 import com.intellij.codeInsight.template.Template;
 import com.intellij.codeInsight.template.impl.ConstantNode;
 import com.intellij.codeInsight.template.impl.MacroCallNode;
+import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.Condition;
+import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElement;
+import com.intellij.psi.search.GlobalSearchScope;
+import com.intellij.psi.search.PsiShortNamesCache;
 import com.kogitune.intellij.codeinsight.postfix.internal.RichChooserStringBasedPostfixTemplate;
 import com.kogitune.intellij.codeinsight.postfix.macro.TagMacro;
 import com.kogitune.intellij.codeinsight.postfix.utils.AndroidPostfixTemplatesUtils;
@@ -33,7 +37,7 @@ import static com.kogitune.intellij.codeinsight.postfix.utils.AndroidClassName.L
  *
  * @author takahirom
  */
-public class LogTemplate extends RichChooserStringBasedPostfixTemplate {
+public class LogDTemplate extends RichChooserStringBasedPostfixTemplate {
 
     public static final Condition<PsiElement> IS_NON_NULL_OBJECT = new Condition<PsiElement>() {
         @Override
@@ -42,18 +46,30 @@ public class LogTemplate extends RichChooserStringBasedPostfixTemplate {
         }
     };
 
-    public LogTemplate() {
-        this("log");
+    public LogDTemplate() {
+        this("logd");
     }
 
-    public LogTemplate(@NotNull String alias) {
-        super(alias, "Log.d(TAG, expr);", IS_NON_NULL_OBJECT);
+    public LogDTemplate(@NotNull String alias) {
+        super(alias, "if(BuildConfig.DEBUG) Log.d(TAG, expr);", IS_NON_NULL_OBJECT);
     }
 
 
     @Override
     public String getTemplateString(@NotNull PsiElement element) {
-        return getStaticMethodPrefix(LOG, "d", element) + "($TAG$, $expr$);$END$";
+        Project project = element.getProject();
+        GlobalSearchScope scope = GlobalSearchScope.allScope(project);
+        PsiClass[] buildConfigClasses = PsiShortNamesCache.getInstance(project).getClassesByName("BuildConfig", scope);
+
+        String buildConfigDebug = "BuildConfig.DEBUG";
+        if (buildConfigClasses.length != 0) {
+            // geted BuildConfig QualifiedName
+            PsiClass buildConfig = buildConfigClasses[0];
+            String qualifiedName = buildConfig.getQualifiedName();
+            buildConfigDebug = qualifiedName + ".DEBUG";
+        }
+
+        return "if (" + buildConfigDebug + ") " + getStaticMethodPrefix(LOG, "d", element) + "($TAG$, $expr$);$END$";
     }
 
     @Override
