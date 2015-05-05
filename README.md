@@ -11,6 +11,9 @@ Available templates:
 | .toast        | Create and show Toast.                                                                                        | Toast.makeText(context, expr, Toast.LENGTH_SHORT).show()                    |
 | .log        | Logging. If there is constant variable "TAG", it use "TAG" . Else it use class name.                                                                                       | Log.d(TAG, expr)                    |
 
+Plugin page
+---------------
+[JetBrains plugin page](https://plugins.jetbrains.com/plugin/7775)
 
 Thanks
 ---------------
