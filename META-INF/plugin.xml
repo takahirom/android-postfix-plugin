@@ -16,6 +16,10 @@
       <ul>
         <li> <b>.log</b><br/><em>Log</em><br/><b>Log.d("log", expr);</b></li>
       </ul>
+      <ul>
+        <li> <b>.logd</b><br/><em>If BuildConfig.DEBUG is true, Log message.</em><br/><b>Log.d("log", expr);</b></li>
+      </ul>
+
 
     ]]></description>
 

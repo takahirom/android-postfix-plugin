@@ -63,7 +63,7 @@ public class LogDTemplate extends RichChooserStringBasedPostfixTemplate {
 
         String buildConfigDebug = "BuildConfig.DEBUG";
         if (buildConfigClasses.length != 0) {
-            // geted BuildConfig QualifiedName
+            // got BuildConfig QualifiedName
             PsiClass buildConfig = buildConfigClasses[0];
             String qualifiedName = buildConfig.getQualifiedName();
             buildConfigDebug = qualifiedName + ".DEBUG";
