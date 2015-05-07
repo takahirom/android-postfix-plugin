@@ -63,11 +63,15 @@ public abstract class AbstractRichStringBasedPostfixTemplate extends PostfixTemp
         Template template = createTemplate(project, manager, templateString);
 
         if (shouldAddExpressionToContext()) {
-            template.addVariable("expr", new TextExpression(expr.getText()), false);
+            addExprVariable(expr, template);
         }
 
         setVariables(template, expr);
         manager.startTemplate(editor, template);
+    }
+
+    protected void addExprVariable(@NotNull PsiElement expr, Template template) {
+        template.addVariable("expr", new TextExpression(expr.getText()), false);
     }
 
     /**

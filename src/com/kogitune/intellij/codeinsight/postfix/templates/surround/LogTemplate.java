@@ -22,10 +22,12 @@ import com.intellij.openapi.util.Condition;
 import com.intellij.psi.PsiElement;
 import com.kogitune.intellij.codeinsight.postfix.internal.RichChooserStringBasedPostfixTemplate;
 import com.kogitune.intellij.codeinsight.postfix.macro.TagMacro;
+import com.kogitune.intellij.codeinsight.postfix.macro.ToStringIfNeedMacro;
 import com.kogitune.intellij.codeinsight.postfix.utils.AndroidPostfixTemplatesUtils;
 import org.jetbrains.annotations.NotNull;
 
 import static com.intellij.codeInsight.template.postfix.util.JavaPostfixTemplatesUtils.IS_NOT_PRIMITIVE;
+import static com.intellij.codeInsight.template.postfix.util.JavaPostfixTemplatesUtils.IS_NUMBER;
 import static com.kogitune.intellij.codeinsight.postfix.utils.AndroidClassName.LOG;
 
 /**
@@ -38,8 +40,9 @@ public class LogTemplate extends RichChooserStringBasedPostfixTemplate {
     public static final Condition<PsiElement> IS_NON_NULL_OBJECT = new Condition<PsiElement>() {
         @Override
         public boolean value(PsiElement element) {
-            return IS_NOT_PRIMITIVE.value(element) && !AndroidPostfixTemplatesUtils.isAnnotatedNullable(element);
+            return (IS_NOT_PRIMITIVE.value(element) || IS_NUMBER.value(element)) && !AndroidPostfixTemplatesUtils.isAnnotatedNullable(element);
         }
+
     };
 
     public LogTemplate() {
@@ -54,6 +57,14 @@ public class LogTemplate extends RichChooserStringBasedPostfixTemplate {
     @Override
     public String getTemplateString(@NotNull PsiElement element) {
         return getStaticMethodPrefix(LOG, "d", element) + "($TAG$, $expr$);$END$";
+    }
+
+    @Override
+    protected void addExprVariable(@NotNull PsiElement expr, Template template) {
+        final ToStringIfNeedMacro toStringIfNeedMacro = new ToStringIfNeedMacro();
+        MacroCallNode macroCallNode = new MacroCallNode(toStringIfNeedMacro);
+        macroCallNode.addParameter(new ConstantNode(expr.getText()));
+        template.addVariable("expr", macroCallNode, false);
     }
 
     @Override

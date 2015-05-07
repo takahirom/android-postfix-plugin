@@ -26,6 +26,7 @@ import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.search.PsiShortNamesCache;
 import com.kogitune.intellij.codeinsight.postfix.internal.RichChooserStringBasedPostfixTemplate;
 import com.kogitune.intellij.codeinsight.postfix.macro.TagMacro;
+import com.kogitune.intellij.codeinsight.postfix.macro.ToStringIfNeedMacro;
 import com.kogitune.intellij.codeinsight.postfix.utils.AndroidPostfixTemplatesUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -70,6 +71,14 @@ public class LogDTemplate extends RichChooserStringBasedPostfixTemplate {
         }
 
         return "if (" + buildConfigDebug + ") " + getStaticMethodPrefix(LOG, "d", element) + "($TAG$, $expr$);$END$";
+    }
+
+    @Override
+    protected void addExprVariable(@NotNull PsiElement expr, Template template) {
+        final ToStringIfNeedMacro toStringIfNeedMacro = new ToStringIfNeedMacro();
+        MacroCallNode macroCallNode = new MacroCallNode(toStringIfNeedMacro);
+        macroCallNode.addParameter(new ConstantNode(expr.getText()));
+        template.addVariable("expr", macroCallNode, false);
     }
 
     @Override

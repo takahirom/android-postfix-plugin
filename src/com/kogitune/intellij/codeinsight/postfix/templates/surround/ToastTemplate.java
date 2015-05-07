@@ -22,6 +22,7 @@ import com.intellij.codeInsight.template.macro.VariableOfTypeMacro;
 import com.intellij.openapi.util.Condition;
 import com.intellij.psi.PsiElement;
 import com.kogitune.intellij.codeinsight.postfix.internal.RichChooserStringBasedPostfixTemplate;
+import com.kogitune.intellij.codeinsight.postfix.macro.ToStringIfNeedMacro;
 import com.kogitune.intellij.codeinsight.postfix.utils.AndroidPostfixTemplatesUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -55,6 +56,14 @@ public class ToastTemplate extends RichChooserStringBasedPostfixTemplate {
     @Override
     public String getTemplateString(@NotNull PsiElement element) {
         return getStaticMethodPrefix(TOAST, "makeText", element) + "($context$, $expr$, Toast.LENGTH_SHORT).show();$END$";
+    }
+
+    @Override
+    protected void addExprVariable(@NotNull PsiElement expr, Template template) {
+        final ToStringIfNeedMacro toStringIfNeedMacro = new ToStringIfNeedMacro();
+        MacroCallNode macroCallNode = new MacroCallNode(toStringIfNeedMacro);
+        macroCallNode.addParameter(new ConstantNode(expr.getText()));
+        template.addVariable("expr", macroCallNode, false);
     }
 
     @Override
