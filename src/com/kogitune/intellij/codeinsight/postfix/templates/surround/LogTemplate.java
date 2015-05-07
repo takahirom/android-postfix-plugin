@@ -52,10 +52,9 @@ public class LogTemplate extends RichChooserStringBasedPostfixTemplate {
         super(alias, "Log.d(TAG, expr);", IS_NON_NULL);
     }
 
-
     @Override
     public String getTemplateString(@NotNull PsiElement element) {
-        return getStaticMethodPrefix(LOG, "d", element) + "($TAG$, $expr$);$END$";
+        return getStaticMethodPrefix(LOG, "d", element) + "($TAG$, $expr$)$END$";
     }
 
     @Override

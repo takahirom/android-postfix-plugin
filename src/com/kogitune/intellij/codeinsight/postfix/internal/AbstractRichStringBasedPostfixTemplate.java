@@ -16,15 +16,21 @@
 package com.kogitune.intellij.codeinsight.postfix.internal;
 
 import com.intellij.codeInsight.template.Template;
+import com.intellij.codeInsight.template.TemplateEditingAdapter;
 import com.intellij.codeInsight.template.TemplateManager;
 import com.intellij.codeInsight.template.impl.TextExpression;
 import com.intellij.codeInsight.template.postfix.templates.PostfixTemplateExpressionSelector;
 import com.intellij.codeInsight.template.postfix.templates.PostfixTemplateWithExpressionSelector;
 import com.intellij.codeInsight.template.postfix.templates.PostfixTemplatesUtils;
 import com.intellij.codeInsight.template.postfix.templates.StringBasedPostfixTemplate;
+import com.intellij.openapi.actionSystem.ActionManager;
+import com.intellij.openapi.actionSystem.ActionPlaces;
+import com.intellij.openapi.actionSystem.AnAction;
+import com.intellij.openapi.actionSystem.impl.ActionManagerImpl;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.ui.playback.commands.ActionCommand;
 import com.intellij.psi.PsiElement;
 import com.kogitune.intellij.codeinsight.postfix.utils.AndroidClassName;
 import com.kogitune.intellij.codeinsight.postfix.utils.AndroidPostfixTemplatesUtils;
@@ -46,7 +52,7 @@ public abstract class AbstractRichStringBasedPostfixTemplate extends PostfixTemp
     }
 
     @Override
-    protected final void expandForChooseExpression(@NotNull PsiElement expr, @NotNull Editor editor) {
+    protected final void expandForChooseExpression(@NotNull PsiElement expr, @NotNull final Editor editor) {
         Project project = expr.getProject();
         Document document = editor.getDocument();
         PsiElement elementForRemoving = shouldRemoveParent() ? expr.getParent() : expr;
@@ -67,7 +73,16 @@ public abstract class AbstractRichStringBasedPostfixTemplate extends PostfixTemp
         }
 
         setVariables(template, expr);
-        manager.startTemplate(editor, template);
+        manager.startTemplate(editor, template, new TemplateEditingAdapter() {
+            @Override
+            public void templateFinished(Template template, boolean brokenOff) {
+                // format and add ;
+                final ActionManager actionManager = ActionManagerImpl.getInstance();
+                final String editorCompleteStatementText = "EditorCompleteStatement";
+                final AnAction action = actionManager.getAction(editorCompleteStatementText);
+                actionManager.tryToExecute(action, ActionCommand.getInputEvent(editorCompleteStatementText), null, ActionPlaces.UNKNOWN, true);
+            }
+        });
     }
 
     protected void addExprVariable(@NotNull PsiElement expr, Template template) {

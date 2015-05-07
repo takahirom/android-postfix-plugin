@@ -71,7 +71,7 @@ public class LogDTemplate extends RichChooserStringBasedPostfixTemplate {
             buildConfigDebug = qualifiedName + ".DEBUG";
         }
 
-        return "if (" + buildConfigDebug + ") " + getStaticMethodPrefix(LOG, "d", element) + "($TAG$, $expr$);$END$";
+        return "if (" + buildConfigDebug + ") " + getStaticMethodPrefix(LOG, "d", element) + "($TAG$, $expr$)$END$";
     }
 
     @Override
