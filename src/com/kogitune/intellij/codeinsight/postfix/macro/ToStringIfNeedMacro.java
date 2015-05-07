@@ -2,10 +2,7 @@ package com.kogitune.intellij.codeinsight.postfix.macro;
 
 import com.intellij.codeInsight.template.*;
 import com.intellij.openapi.project.Project;
-import com.intellij.psi.JavaPsiFacade;
-import com.intellij.psi.PsiElementFactory;
-import com.intellij.psi.PsiExpression;
-import com.intellij.psi.PsiType;
+import com.intellij.psi.*;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -38,8 +35,14 @@ public class ToStringIfNeedMacro extends Macro {
             final PsiType type = expression.getType();
 
             if ("java.lang.String".equals(type.getCanonicalText())) {
+                // example "test:" + test
                 return new TextResult(exprText);
             }
+            if (expression instanceof PsiPolyadicExpression) {
+                // example 1 + 1
+                return new TextResult("\"" + exprText + ":\" + (" + exprText + ")");
+            }
+            // example 1
             return new TextResult("\"" + exprText + ":\" + " + exprText);
         } catch (Exception e) {
             // ignored. because can use default result.
