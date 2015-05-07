@@ -1,7 +1,7 @@
 <idea-plugin version="2">
     <id>com.kogitune.intellij.androidPostfixCompletion</id>
     <name>Android Postfix Completion</name>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
     <vendor email="takam.dev@gmail.com" url="https://github.com/takahirom/android-postfix-plugin">takahirom</vendor>
 
     <description><![CDATA[
@@ -25,6 +25,7 @@
 
     <change-notes><![CDATA[
       * Initial release
+      * Add logd and support not string expr.
   ]]></change-notes>
 
     <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
