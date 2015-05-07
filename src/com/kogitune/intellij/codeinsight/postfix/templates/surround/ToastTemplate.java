@@ -26,7 +26,7 @@ import com.kogitune.intellij.codeinsight.postfix.macro.ToStringIfNeedMacro;
 import com.kogitune.intellij.codeinsight.postfix.utils.AndroidPostfixTemplatesUtils;
 import org.jetbrains.annotations.NotNull;
 
-import static com.intellij.codeInsight.template.postfix.util.JavaPostfixTemplatesUtils.IS_NOT_PRIMITIVE;
+import static com.intellij.codeInsight.template.postfix.util.JavaPostfixTemplatesUtils.*;
 import static com.kogitune.intellij.codeinsight.postfix.utils.AndroidClassName.CONTEXT;
 import static com.kogitune.intellij.codeinsight.postfix.utils.AndroidClassName.TOAST;
 
@@ -37,11 +37,12 @@ import static com.kogitune.intellij.codeinsight.postfix.utils.AndroidClassName.T
  */
 public class ToastTemplate extends RichChooserStringBasedPostfixTemplate {
 
-    public static final Condition<PsiElement> IS_NON_NULL_OBJECT = new Condition<PsiElement>() {
+    public static final Condition<PsiElement> IS_NON_NULL = new Condition<PsiElement>() {
         @Override
         public boolean value(PsiElement element) {
-            return IS_NOT_PRIMITIVE.value(element) && !AndroidPostfixTemplatesUtils.isAnnotatedNullable(element);
+            return (IS_NOT_PRIMITIVE.value(element) || IS_NUMBER.value(element) || IS_BOOLEAN.value(element)) && !AndroidPostfixTemplatesUtils.isAnnotatedNullable(element);
         }
+
     };
 
     public ToastTemplate() {
@@ -49,7 +50,7 @@ public class ToastTemplate extends RichChooserStringBasedPostfixTemplate {
     }
 
     public ToastTemplate(@NotNull String alias) {
-        super(alias, "Toast.makeText(context, expr, Toast.LENGTH_SHORT).show();", IS_NON_NULL_OBJECT);
+        super(alias, "Toast.makeText(context, expr, Toast.LENGTH_SHORT).show();", IS_NON_NULL);
     }
 
 
