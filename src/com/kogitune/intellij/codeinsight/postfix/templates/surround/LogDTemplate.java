@@ -60,8 +60,8 @@ public class LogDTemplate extends RichChooserStringBasedPostfixTemplate {
     @Override
     public String getTemplateString(@NotNull PsiElement element) {
         Project project = element.getProject();
-        GlobalSearchScope scope = GlobalSearchScope.allScope(project);
-        PsiClass[] buildConfigClasses = PsiShortNamesCache.getInstance(project).getClassesByName("BuildConfig", scope);
+        final GlobalSearchScope resolveScope = element.getResolveScope();
+        PsiClass[] buildConfigClasses = PsiShortNamesCache.getInstance(project).getClassesByName("BuildConfig", resolveScope);
 
         String buildConfigDebug = "BuildConfig.DEBUG";
         if (buildConfigClasses.length != 0) {
