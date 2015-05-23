@@ -29,7 +29,11 @@ public class TagMacro extends Macro {
         if (isContainTagField(context)) {
             return new TextResult("TAG");
         } else {
-            return new TextResult("\"" + new ClassNameMacro().calculateResult(new Expression[]{}, context).toString() + "\"");
+            String className = new ClassNameMacro().calculateResult(new Expression[]{}, context).toString();
+            if (className.length() > 23) {
+                className = className.substring(0, 23);
+            }
+            return new TextResult("\"" + className + "\"");
         }
     }
 
