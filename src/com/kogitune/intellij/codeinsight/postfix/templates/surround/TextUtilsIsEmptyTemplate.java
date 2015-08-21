@@ -1,12 +1,10 @@
 package com.kogitune.intellij.codeinsight.postfix.templates.surround;
 
 import com.intellij.codeInsight.template.Template;
-import com.intellij.codeInsight.template.impl.ConstantNode;
-import com.intellij.codeInsight.template.impl.MacroCallNode;
+import com.intellij.codeInsight.template.impl.TextExpression;
 import com.intellij.openapi.util.Condition;
 import com.intellij.psi.PsiElement;
 import com.kogitune.intellij.codeinsight.postfix.internal.RichChooserStringBasedPostfixTemplate;
-import com.kogitune.intellij.codeinsight.postfix.macro.ToStringIfNeedMacro;
 import com.kogitune.intellij.codeinsight.postfix.utils.AndroidPostfixTemplatesUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -29,7 +27,7 @@ public class TextUtilsIsEmptyTemplate extends RichChooserStringBasedPostfixTempl
     };
 
     public TextUtilsIsEmptyTemplate() {
-        this("isEmpty");
+        this("isemp");
     }
 
     public TextUtilsIsEmptyTemplate(@NotNull String alias) {
@@ -43,9 +41,6 @@ public class TextUtilsIsEmptyTemplate extends RichChooserStringBasedPostfixTempl
 
     @Override
     protected void addExprVariable(@NotNull PsiElement expr, Template template) {
-        final ToStringIfNeedMacro toStringIfNeedMacro = new ToStringIfNeedMacro();
-        MacroCallNode macroCallNode = new MacroCallNode(toStringIfNeedMacro);
-        macroCallNode.addParameter(new ConstantNode(expr.getText()));
-        template.addVariable("expr", macroCallNode, false);
+        template.addVariable("expr", new TextExpression(expr.getText()), false);
     }
 }
