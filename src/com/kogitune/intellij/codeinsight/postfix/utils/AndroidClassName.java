@@ -25,7 +25,8 @@ import com.siyeh.ig.psiutils.ClassUtils;
 public enum AndroidClassName {
     TOAST("android.widget.Toast"),
     LOG("android.util.Log"),
-    CONTEXT("android.content.Context"),;
+    CONTEXT("android.content.Context"),
+    TEXT_UTILS("android.text.TextUtils"),;
 
 
     private final String fqClassName;

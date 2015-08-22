@@ -20,6 +20,7 @@ import com.intellij.codeInsight.template.postfix.templates.PostfixTemplate;
 import com.intellij.util.containers.ContainerUtil;
 import com.kogitune.intellij.codeinsight.postfix.templates.surround.LogDTemplate;
 import com.kogitune.intellij.codeinsight.postfix.templates.surround.LogTemplate;
+import com.kogitune.intellij.codeinsight.postfix.templates.surround.TextUtilsIsEmptyTemplate;
 import com.kogitune.intellij.codeinsight.postfix.templates.surround.ToastTemplate;
 import org.jetbrains.annotations.NotNull;
 
@@ -39,7 +40,8 @@ public class AndroidPostfixTemplateProvider extends JavaPostfixTemplateProvider 
         templates = ContainerUtil.<PostfixTemplate>newHashSet(
                 new ToastTemplate(),
                 new LogTemplate(),
-                new LogDTemplate()
+                new LogDTemplate(),
+                new TextUtilsIsEmptyTemplate()
         );
     }
 
