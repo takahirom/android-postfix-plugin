@@ -4,11 +4,12 @@ import com.intellij.codeInsight.template.Template;
 import com.intellij.codeInsight.template.impl.TextExpression;
 import com.intellij.openapi.util.Condition;
 import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiExpression;
+import com.intellij.psi.util.InheritanceUtil;
 import com.kogitune.intellij.codeinsight.postfix.internal.RichChooserStringBasedPostfixTemplate;
 import com.kogitune.intellij.codeinsight.postfix.utils.AndroidPostfixTemplatesUtils;
 import org.jetbrains.annotations.NotNull;
 
-import static com.intellij.codeInsight.template.postfix.util.JavaPostfixTemplatesUtils.IS_NON_VOID;
 import static com.kogitune.intellij.codeinsight.postfix.utils.AndroidClassName.TEXT_UTILS;
 
 /**
@@ -18,10 +19,10 @@ import static com.kogitune.intellij.codeinsight.postfix.utils.AndroidClassName.T
  */
 public class TextUtilsIsEmptyTemplate extends RichChooserStringBasedPostfixTemplate {
 
-    public static final Condition<PsiElement> IS_NON_NULL = new Condition<PsiElement>() {
+    public static final Condition<PsiElement> IS_NON_NULL_STRING = new Condition<PsiElement>() {
         @Override
         public boolean value(PsiElement element) {
-            return IS_NON_VOID.value(element) && !AndroidPostfixTemplatesUtils.isAnnotatedNullable(element);
+            return InheritanceUtil.isInheritor(((PsiExpression)element).getType(), "java.lang.String") && !AndroidPostfixTemplatesUtils.isAnnotatedNullable(element);
         }
 
     };
@@ -31,7 +32,7 @@ public class TextUtilsIsEmptyTemplate extends RichChooserStringBasedPostfixTempl
     }
 
     public TextUtilsIsEmptyTemplate(@NotNull String alias) {
-        super(alias, "TextUtils.isEmpty(expr)", IS_NON_NULL);
+        super(alias, "TextUtils.isEmpty(expr)", IS_NON_NULL_STRING);
     }
 
     @Override
