@@ -11,6 +11,7 @@ Available templates:
 | .toast        | Create and show Toast.                                                                              | Toast.makeText(context, expr, Toast.LENGTH_SHORT).show()                    |
 | .log        | Logging. If there is constant variable "TAG", it use "TAG" . Else it use class name.                  | Log.d(TAG, expr)                    |
 | .logd        | Logging. If BuildConfig.DEBUG is true, Log message.                 | if (BuildConfig.DEBUG) Log.d(TAG, expr)                    |
+| .isemp        | Check empty.                | TextUtils.isEmpty(expr)                    |
 
 Plugin page
 ---------------
