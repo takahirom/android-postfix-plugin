@@ -28,8 +28,7 @@
     ]]></description>
 
     <change-notes><![CDATA[
-      * Initial release
-      * Add logd and support not string expr.
+      * Add isemp that generate TextUtils.isEmpty(expr).
   ]]></change-notes>
 
     <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
