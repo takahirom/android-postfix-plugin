@@ -4,11 +4,11 @@
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src/postfixTemplates" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/postfixTemplates/LogTemplate" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/postfixTemplates/ToastTemplate" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/postfixTemplates/LogDTemplate" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/postfixTemplates/TextUtilsIsEmptyTemplate" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/postfixTemplates" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/postfixTemplates/LogTemplate" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/postfixTemplates/ToastTemplate" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/postfixTemplates/LogDTemplate" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/postfixTemplates/TextUtilsIsEmptyTemplate" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
