@@ -1,6 +1,6 @@
 general:
   branches:
-    only: 'master'
+    only: ['master']
   artifacts:
     - 'build/libs'
 machine:
