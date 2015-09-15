@@ -9,6 +9,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/postfixTemplates/ToastTemplate" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/postfixTemplates/LogDTemplate" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/postfixTemplates/TextUtilsIsEmptyTemplate" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
