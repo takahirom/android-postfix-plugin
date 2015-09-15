@@ -23,8 +23,6 @@
         <li> <b>.isemp</b><br/><em>isEmpty</em><br/><b>TextUtils.isEmpty(expr);</b></li>
       </ul>
 
-
-
     ]]></description>
 
     <change-notes><![CDATA[

@@ -21,3 +21,7 @@ out/
 # Mongo Explorer plugin:
 .idea/mongoSettings.xml
 
+
+### Gradle template
+.gradle
+build/
