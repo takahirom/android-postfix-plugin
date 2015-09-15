@@ -18,6 +18,11 @@ Plugin page
 [JetBrains plugin page](https://plugins.jetbrains.com/plugin/7775)
 
 
+Contributors
+---------------
+* [kikuchy](http://www.github.com/kikuchy)
+
+
 Contribution
 ----------------
 1. Fork it ( http://github.com/takahirom/android-postfix-plugin/fork )
@@ -25,6 +30,7 @@ Contribution
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
 5. Create new Pull Request
+
 
 Thanks
 ---------------
