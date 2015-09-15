@@ -8,4 +8,4 @@ machine:
     version: openjdk7
 test:
   override:
-    - ./gradlew build
+    - ./gradlew build -d
