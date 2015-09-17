@@ -18,10 +18,7 @@ package com.kogitune.intellij.codeinsight.postfix;
 import com.intellij.codeInsight.template.postfix.templates.JavaPostfixTemplateProvider;
 import com.intellij.codeInsight.template.postfix.templates.PostfixTemplate;
 import com.intellij.util.containers.ContainerUtil;
-import com.kogitune.intellij.codeinsight.postfix.templates.surround.LogDTemplate;
-import com.kogitune.intellij.codeinsight.postfix.templates.surround.LogTemplate;
-import com.kogitune.intellij.codeinsight.postfix.templates.surround.TextUtilsIsEmptyTemplate;
-import com.kogitune.intellij.codeinsight.postfix.templates.surround.ToastTemplate;
+import com.kogitune.intellij.codeinsight.postfix.templates.surround.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
@@ -41,7 +38,8 @@ public class AndroidPostfixTemplateProvider extends JavaPostfixTemplateProvider 
                 new ToastTemplate(),
                 new LogTemplate(),
                 new LogDTemplate(),
-                new TextUtilsIsEmptyTemplate()
+                new TextUtilsIsEmptyTemplate(),
+                new VisibleGoneTemplate()
         );
     }
 

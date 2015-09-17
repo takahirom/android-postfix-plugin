@@ -56,7 +56,7 @@ public class ToastTemplate extends RichChooserStringBasedPostfixTemplate {
 
     @Override
     public String getTemplateString(@NotNull PsiElement element) {
-        return getStaticMethodPrefix(TOAST, "makeText", element) + "($context$, $expr$, Toast.LENGTH_SHORT).show()$END$";
+        return getStaticPrefix(TOAST, "makeText", element) + "($context$, $expr$, Toast.LENGTH_SHORT).show()$END$";
     }
 
     @Override

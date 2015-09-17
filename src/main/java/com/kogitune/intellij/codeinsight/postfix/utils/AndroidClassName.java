@@ -26,7 +26,8 @@ public enum AndroidClassName {
     TOAST("android.widget.Toast"),
     LOG("android.util.Log"),
     CONTEXT("android.content.Context"),
-    TEXT_UTILS("android.text.TextUtils"),;
+    TEXT_UTILS("android.text.TextUtils"),
+    VIEW("android.view.View"),;
 
 
     private final String fqClassName;
