@@ -27,9 +27,9 @@ public class VisibleGoneTemplate extends RichChooserStringBasedPostfixTemplate {
     @Override
     public String getTemplateString(@NotNull PsiElement element) {
         return "($expr$) ? "
-                + getStaticMethodPrefix(AndroidClassName.VIEW, "VISIBLE", element)
+                + getStaticPrefix(AndroidClassName.VIEW, "VISIBLE", element)
                 + " : "
-                + getStaticMethodPrefix(AndroidClassName.VIEW, "GONE", element);
+                + getStaticPrefix(AndroidClassName.VIEW, "GONE", element);
     }
 
     @Override

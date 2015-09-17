@@ -155,8 +155,8 @@ public class AndroidPostfixTemplatesUtils {
      * @param methodName  The method name
      * @param context     The current context
      */
-    public static String getStaticMethodPrefix(@NotNull String fqClassName, @NotNull String methodName,
-                                               @NotNull PsiElement context) {
+    public static String getStaticPrefix(@NotNull String fqClassName, @NotNull String methodName,
+                                         @NotNull PsiElement context) {
         return hasImportStatic(fqClassName, methodName, context) ? methodName : (fqClassName + "." + methodName);
     }
 

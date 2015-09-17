@@ -141,10 +141,10 @@ public abstract class AbstractRichStringBasedPostfixTemplate extends PostfixTemp
      * @param methodName The method name
      * @param context    The context element
      */
-    protected String getStaticMethodPrefix(@NotNull AndroidClassName className,
-                                           @NotNull String methodName,
-                                           @NotNull PsiElement context) {
-        return getStaticMethodPrefix(className.getClassName(), methodName, context);
+    protected String getStaticPrefix(@NotNull AndroidClassName className,
+                                     @NotNull String methodName,
+                                     @NotNull PsiElement context) {
+        return getStaticPrefix(className.getClassName(), methodName, context);
     }
 
     /**
@@ -154,9 +154,9 @@ public abstract class AbstractRichStringBasedPostfixTemplate extends PostfixTemp
      * @param methodName The method name
      * @param context    The context element
      */
-    protected String getStaticMethodPrefix(@NotNull String className,
-                                           @NotNull String methodName,
-                                           @NotNull PsiElement context) {
-        return AndroidPostfixTemplatesUtils.getStaticMethodPrefix(className, methodName, context);
+    protected String getStaticPrefix(@NotNull String className,
+                                     @NotNull String methodName,
+                                     @NotNull PsiElement context) {
+        return AndroidPostfixTemplatesUtils.getStaticPrefix(className, methodName, context);
     }
 }

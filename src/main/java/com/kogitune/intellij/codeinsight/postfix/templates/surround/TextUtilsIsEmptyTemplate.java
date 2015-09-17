@@ -37,7 +37,7 @@ public class TextUtilsIsEmptyTemplate extends RichChooserStringBasedPostfixTempl
 
     @Override
     public String getTemplateString(@NotNull PsiElement element) {
-        return getStaticMethodPrefix(TEXT_UTILS, "isEmpty", element) + "($expr$)$END$";
+        return getStaticPrefix(TEXT_UTILS, "isEmpty", element) + "($expr$)$END$";
     }
 
     @Override
