@@ -22,6 +22,9 @@
       <ul>
         <li> <b>.isemp</b><br/><em>isEmpty</em><br/><b>TextUtils.isEmpty(expr);</b></li>
       </ul>
+      <ul>
+        <li> <b>.vg</b><br/><em>? View.VISIBLE : View.GONE;</em><br/><b> (expr) ? View.VISIBLE : View.GONE;</b></li>
+      </ul>
 
     ]]></description>
 
