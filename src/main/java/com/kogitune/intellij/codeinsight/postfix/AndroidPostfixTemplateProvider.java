@@ -39,7 +39,10 @@ public class AndroidPostfixTemplateProvider extends JavaPostfixTemplateProvider 
                 new LogTemplate(),
                 new LogDTemplate(),
                 new TextUtilsIsEmptyTemplate(),
-                new VisibleGoneTemplate()
+                new VisibleGoneTemplate(),
+                new FindViewByIdTemplate(),
+                new FindViewByIdVariableTemplate(),
+                new FindViewByIdFieldTemplate()
         );
     }
 

@@ -1,5 +1,5 @@
 plugins {
-    id "org.jetbrains.intellij" version "0.0.20"
+    id "org.jetbrains.intellij" version "0.0.22"
 }
 
 apply plugin: 'org.jetbrains.intellij'
@@ -10,7 +10,7 @@ sourceCompatibility = 1.6
 
 intellij {
     version '14.1.4'
-    plugins 'coverage'
+    plugins 'android'
     pluginName 'Android Postfix Completion'
 }
 
@@ -27,4 +27,5 @@ repositories {
 
 dependencies {
     testCompile 'junit:junit:4.12'
+
 }
