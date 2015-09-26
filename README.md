@@ -22,6 +22,14 @@ Contributors
 ---------------
 * [kikuchy](http://www.github.com/kikuchy)
 
+How to run the repository code
+----------------
+1. Clone
+2. Run Gradle Wrapper
+In project root.
+```
+./gradlew runIdea
+```
 
 Contribution
 ----------------
