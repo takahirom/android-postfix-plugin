@@ -2,6 +2,6 @@ import com.google.common.base.Preconditions;
 
 public class Foo {
   void m(Object o) {
-      (ViewType)findViewById(o);
+      ViewType view = (ViewType)findViewById(o);
   }
 }
