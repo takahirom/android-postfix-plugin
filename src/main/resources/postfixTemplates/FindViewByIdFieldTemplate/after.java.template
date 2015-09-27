@@ -1,0 +1,8 @@
+import com.google.common.base.Preconditions;
+
+public class Foo {
+  private ViewType view;
+  void m(Object o) {
+      view = (ViewType)findViewById(o);
+  }
+}

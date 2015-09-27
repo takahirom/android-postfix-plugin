@@ -27,7 +27,9 @@ public enum AndroidClassName {
     LOG("android.util.Log"),
     CONTEXT("android.content.Context"),
     TEXT_UTILS("android.text.TextUtils"),
-    VIEW("android.view.View"),;
+    VIEW("android.view.View"),
+    FRAGMENT("android.support.v4.app.Fragment"),
+    ACTIVITY("android.app.Activity");
 
 
     private final String fqClassName;

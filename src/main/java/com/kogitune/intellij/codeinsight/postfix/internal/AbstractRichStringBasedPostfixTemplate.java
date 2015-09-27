@@ -58,7 +58,7 @@ public abstract class AbstractRichStringBasedPostfixTemplate extends PostfixTemp
         PsiElement elementForRemoving = shouldRemoveParent() ? expr.getParent() : expr;
         document.deleteString(elementForRemoving.getTextRange().getStartOffset(),
                 elementForRemoving.getTextRange().getEndOffset());
-        TemplateManager manager = TemplateManager.getInstance(project);
+        final TemplateManager manager = TemplateManager.getInstance(project);
 
         String templateString = getTemplateString(expr);
         if (templateString == null) {
@@ -76,13 +76,17 @@ public abstract class AbstractRichStringBasedPostfixTemplate extends PostfixTemp
         manager.startTemplate(editor, template, new TemplateEditingAdapter() {
             @Override
             public void templateFinished(Template template, boolean brokenOff) {
-                // format and add ;
-                final ActionManager actionManager = ActionManagerImpl.getInstance();
-                final String editorCompleteStatementText = "EditorCompleteStatement";
-                final AnAction action = actionManager.getAction(editorCompleteStatementText);
-                actionManager.tryToExecute(action, ActionCommand.getInputEvent(editorCompleteStatementText), null, ActionPlaces.UNKNOWN, true);
+                onFinishCompleteStatement(manager, editor, template);
             }
         });
+    }
+
+    protected void onFinishCompleteStatement(TemplateManager manager, Editor editor, Template template) {
+        // format and add ;
+        final ActionManager actionManager = ActionManagerImpl.getInstance();
+        final String editorCompleteStatementText = "EditorCompleteStatement";
+        final AnAction action = actionManager.getAction(editorCompleteStatementText);
+        actionManager.tryToExecute(action, ActionCommand.getInputEvent(editorCompleteStatementText), null, ActionPlaces.UNKNOWN, true);
     }
 
     protected void addExprVariable(@NotNull PsiElement expr, Template template) {
