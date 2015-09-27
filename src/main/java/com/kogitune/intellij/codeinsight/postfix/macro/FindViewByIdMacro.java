@@ -101,9 +101,6 @@ public class FindViewByIdMacro extends Macro {
         List<Module> modules = Arrays.asList(moduleManager.getModules());
         AndroidFacet androidFacet = null;
         for (Module module : modules) {
-            if (module == null) {
-                return null;
-            }
             for (Facet facet : FacetManager.getInstance(module).getAllFacets()) {
                 if (facet instanceof AndroidFacet) {
                     androidFacet = (AndroidFacet) facet;
@@ -114,8 +111,8 @@ public class FindViewByIdMacro extends Macro {
             }
             final LocalResourceRepository resources = ProjectResourceRepository.getProjectResources(androidFacet, true);
             List<ResourceItem> items = resources.getResourceItem(ResourceType.ID, resourceId);
-            if (items.size() == 0) {
-                return null;
+            if (items == null || items.size() == 0) {
+                continue;
             }
             final ResourceItem resourceItem = items.get(0);
             final String viewTag = resources.getViewTag(resourceItem);
