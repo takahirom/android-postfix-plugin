@@ -20,6 +20,9 @@
         <li> <b>.logd</b><br/><em>If BuildConfig.DEBUG is true, Log message.</em><br/><b>Log.d("log", expr);</b></li>
       </ul>
       <ul>
+        <li> <b>.find</b><br/><em>Type FindView</em><br/><b>(ViewType) findViewById(expr);</b></li>
+      </ul>
+      <ul>
         <li> <b>.isemp</b><br/><em>isEmpty</em><br/><b>TextUtils.isEmpty(expr);</b></li>
       </ul>
       <ul>
