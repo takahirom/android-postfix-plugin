@@ -32,7 +32,8 @@
     ]]></description>
 
     <change-notes><![CDATA[
-      * Add isemp that generate TextUtils.isEmpty(expr).
+      * Add .find that generate (ViewType) findViewById(expr).
+      * Add .vg that generate (expr) ? View.VISIBLE : View.GONE.
   ]]></change-notes>
 
     <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
