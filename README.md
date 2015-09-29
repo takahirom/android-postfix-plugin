@@ -1,4 +1,6 @@
 # android-postfix-plugin
+![build status](https://circleci.com/gh/takahirom/android-postfix-plugin/tree/master.svg?style=shield&circle-token=d7e574ba58679594e235b3ca326ef683eee7bf6f)  
+
 Android postfix plugin for AndroidStudio
 
 ![image](https://cloud.githubusercontent.com/assets/1386930/10118005/8d45e898-64a6-11e5-8c32-8f38b0105177.gif)
