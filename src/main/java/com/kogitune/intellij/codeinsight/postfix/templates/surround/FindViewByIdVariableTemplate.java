@@ -10,7 +10,7 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.ui.playback.commands.ActionCommand;
 
 /**
- * Postfix template for android Log.
+ * Postfix template for android findViewById.
  *
  * @author takahirom
  */

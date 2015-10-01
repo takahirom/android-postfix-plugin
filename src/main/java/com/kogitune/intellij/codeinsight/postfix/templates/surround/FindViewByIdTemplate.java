@@ -23,7 +23,7 @@ import static com.intellij.codeInsight.template.postfix.util.JavaPostfixTemplate
 import static com.kogitune.intellij.codeinsight.postfix.utils.AndroidClassName.CONTEXT;
 
 /**
- * Postfix template for android Log.
+ * Postfix template for android findViewById.
  *
  * @author takahirom
  */
