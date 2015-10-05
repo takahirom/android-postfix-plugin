@@ -72,5 +72,6 @@ public class ToastTemplate extends RichChooserStringBasedPostfixTemplate {
         MacroCallNode node = new MacroCallNode(new VariableOfTypeMacro());
         node.addParameter(new ConstantNode(CONTEXT.toString()));
         template.addVariable("context", node, new ConstantNode(""), false);
+
     }
 }

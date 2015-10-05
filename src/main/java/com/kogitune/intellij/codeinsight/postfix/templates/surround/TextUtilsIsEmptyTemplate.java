@@ -1,7 +1,9 @@
 package com.kogitune.intellij.codeinsight.postfix.templates.surround;
 
 import com.intellij.codeInsight.template.Template;
+import com.intellij.codeInsight.template.TemplateManager;
 import com.intellij.codeInsight.template.impl.TextExpression;
+import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.util.Condition;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiExpression;
@@ -22,10 +24,15 @@ public class TextUtilsIsEmptyTemplate extends RichChooserStringBasedPostfixTempl
     public static final Condition<PsiElement> IS_NON_NULL_STRING = new Condition<PsiElement>() {
         @Override
         public boolean value(PsiElement element) {
-            return InheritanceUtil.isInheritor(((PsiExpression)element).getType(), "java.lang.String") && !AndroidPostfixTemplatesUtils.isAnnotatedNullable(element);
+            return InheritanceUtil.isInheritor(((PsiExpression) element).getType(), "java.lang.CharSequence") && !AndroidPostfixTemplatesUtils.isAnnotatedNullable(element);
         }
-
     };
+
+    @Override
+    protected void onFinishCompleteStatement(TemplateManager manager, Editor editor, Template template) {
+        // nothing
+        // Prevent complete statement
+    }
 
     public TextUtilsIsEmptyTemplate() {
         this("isemp");
