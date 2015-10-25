@@ -17,7 +17,7 @@ import com.intellij.openapi.ui.playback.commands.ActionCommand;
 public class FindViewByIdFieldTemplate extends FindViewByIdTemplate {
 
     public FindViewByIdFieldTemplate() {
-        super("findf");
+        super("findf", "mViewType = (ViewType)findViewById(expr);");
     }
 
     @Override

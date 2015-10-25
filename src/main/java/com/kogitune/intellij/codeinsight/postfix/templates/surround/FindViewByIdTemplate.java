@@ -28,11 +28,11 @@ public class FindViewByIdTemplate extends AbstractRichStringBasedPostfixTemplate
     };
 
     public FindViewByIdTemplate() {
-        this("find");
+        this("find", "findViewById(expr);");
     }
 
-    public FindViewByIdTemplate(@NotNull String alias) {
-        super(alias, "findViewById(expr);", IS_NON_NULL_NUMBER);
+    public FindViewByIdTemplate(@NotNull String name, @NotNull String example) {
+        super(name, example, IS_NON_NULL_NUMBER);
     }
 
     @Override
