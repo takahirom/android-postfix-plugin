@@ -5,9 +5,6 @@ import com.intellij.openapi.project.Project;
 import com.intellij.psi.*;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * Created by takam on 2015/05/05.
- */
 public class ToStringIfNeedMacro extends Macro {
 
 
@@ -25,8 +22,6 @@ public class ToStringIfNeedMacro extends Macro {
         if (expressions.length == 0) {
             return null;
         }
-
-
         Project project = context.getProject();
         final String exprText = expressions[0].calculateResult(context).toString();
         try {

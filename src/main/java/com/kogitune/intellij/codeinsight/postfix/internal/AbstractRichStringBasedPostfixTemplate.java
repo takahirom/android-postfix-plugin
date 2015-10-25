@@ -19,10 +19,10 @@ import com.intellij.codeInsight.template.Template;
 import com.intellij.codeInsight.template.TemplateEditingAdapter;
 import com.intellij.codeInsight.template.TemplateManager;
 import com.intellij.codeInsight.template.impl.TextExpression;
-import com.intellij.codeInsight.template.postfix.templates.PostfixTemplateExpressionSelector;
 import com.intellij.codeInsight.template.postfix.templates.PostfixTemplateWithExpressionSelector;
 import com.intellij.codeInsight.template.postfix.templates.PostfixTemplatesUtils;
 import com.intellij.codeInsight.template.postfix.templates.StringBasedPostfixTemplate;
+import com.intellij.codeInsight.template.postfix.util.JavaPostfixTemplatesUtils;
 import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.ActionPlaces;
 import com.intellij.openapi.actionSystem.AnAction;
@@ -31,6 +31,7 @@ import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.playback.commands.ActionCommand;
+import com.intellij.openapi.util.Condition;
 import com.intellij.psi.PsiElement;
 import com.kogitune.intellij.codeinsight.postfix.utils.AndroidClassName;
 import com.kogitune.intellij.codeinsight.postfix.utils.AndroidPostfixTemplatesUtils;
@@ -47,8 +48,8 @@ public abstract class AbstractRichStringBasedPostfixTemplate extends PostfixTemp
 
     protected AbstractRichStringBasedPostfixTemplate(@NotNull String name,
                                                      @NotNull String example,
-                                                     @NotNull PostfixTemplateExpressionSelector selector) {
-        super(name, example, selector);
+                                                     @NotNull Condition<PsiElement> typeChecker) {
+        super(name, example, JavaPostfixTemplatesUtils.selectorAllExpressionsWithCurrentOffset(typeChecker));
     }
 
     @Override
@@ -116,13 +117,17 @@ public abstract class AbstractRichStringBasedPostfixTemplate extends PostfixTemp
      * Returns true if the formatting manager should be applied to the generated code block.
      */
     protected boolean shouldReformat() {
-        return true;
+        return false;
     }
+
 
     /**
      * Returns true if the parent element should be removed, for example for topmost expression.
      */
-    protected abstract boolean shouldRemoveParent();
+    protected boolean shouldRemoveParent() {
+        return false;
+    }
+
 
     /**
      * Create a new instance of a code template for the current postfix template.

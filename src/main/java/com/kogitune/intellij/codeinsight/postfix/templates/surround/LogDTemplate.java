@@ -15,22 +15,14 @@
  */
 package com.kogitune.intellij.codeinsight.postfix.templates.surround;
 
-import com.intellij.codeInsight.template.Template;
-import com.intellij.codeInsight.template.impl.ConstantNode;
-import com.intellij.codeInsight.template.impl.MacroCallNode;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.util.Condition;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.search.PsiShortNamesCache;
-import com.kogitune.intellij.codeinsight.postfix.internal.RichChooserStringBasedPostfixTemplate;
-import com.kogitune.intellij.codeinsight.postfix.macro.TagMacro;
-import com.kogitune.intellij.codeinsight.postfix.macro.ToStringIfNeedMacro;
 import com.kogitune.intellij.codeinsight.postfix.utils.AndroidPostfixTemplatesUtils;
 import org.jetbrains.annotations.NotNull;
 
-import static com.intellij.codeInsight.template.postfix.util.JavaPostfixTemplatesUtils.IS_NON_VOID;
 import static com.kogitune.intellij.codeinsight.postfix.utils.AndroidClassName.LOG;
 
 /**
@@ -38,24 +30,15 @@ import static com.kogitune.intellij.codeinsight.postfix.utils.AndroidClassName.L
  *
  * @author takahirom
  */
-public class LogDTemplate extends RichChooserStringBasedPostfixTemplate {
-
-    public static final Condition<PsiElement> IS_NON_NULL = new Condition<PsiElement>() {
-        @Override
-        public boolean value(PsiElement element) {
-            return IS_NON_VOID.value(element) && !AndroidPostfixTemplatesUtils.isAnnotatedNullable(element);
-        }
-
-    };
+public class LogDTemplate extends LogTemplate {
 
     public LogDTemplate() {
         this("logd");
     }
 
     public LogDTemplate(@NotNull String alias) {
-        super(alias, "if(BuildConfig.DEBUG) Log.d(TAG, expr);", IS_NON_NULL);
+        super(alias, "if(BuildConfig.DEBUG) Log.d(TAG, expr);", AndroidPostfixTemplatesUtils.IS_NON_NULL);
     }
-
 
     @Override
     public String getTemplateString(@NotNull PsiElement element) {
@@ -65,7 +48,7 @@ public class LogDTemplate extends RichChooserStringBasedPostfixTemplate {
 
         String buildConfigDebug = "BuildConfig.DEBUG";
         if (buildConfigClasses.length != 0) {
-            // got BuildConfig QualifiedName
+            // Get BuildConfig QualifiedName
             PsiClass buildConfig = buildConfigClasses[0];
             String qualifiedName = buildConfig.getQualifiedName();
             buildConfigDebug = qualifiedName + ".DEBUG";
@@ -74,17 +57,4 @@ public class LogDTemplate extends RichChooserStringBasedPostfixTemplate {
         return "if (" + buildConfigDebug + ") " + getStaticPrefix(LOG, "d", element) + "($TAG$, $expr$)$END$";
     }
 
-    @Override
-    protected void addExprVariable(@NotNull PsiElement expr, Template template) {
-        final ToStringIfNeedMacro toStringIfNeedMacro = new ToStringIfNeedMacro();
-        MacroCallNode macroCallNode = new MacroCallNode(toStringIfNeedMacro);
-        macroCallNode.addParameter(new ConstantNode(expr.getText()));
-        template.addVariable("expr", macroCallNode, false);
-    }
-
-    @Override
-    protected void setVariables(@NotNull Template template, @NotNull PsiElement element) {
-        MacroCallNode node = new MacroCallNode(new TagMacro());
-        template.addVariable("TAG", node, new ConstantNode(""), false);
-    }
 }

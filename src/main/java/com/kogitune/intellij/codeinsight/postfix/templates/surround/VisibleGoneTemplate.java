@@ -3,7 +3,7 @@ package com.kogitune.intellij.codeinsight.postfix.templates.surround;
 import com.intellij.codeInsight.template.Template;
 import com.intellij.codeInsight.template.impl.TextExpression;
 import com.intellij.psi.PsiElement;
-import com.kogitune.intellij.codeinsight.postfix.internal.RichChooserStringBasedPostfixTemplate;
+import com.kogitune.intellij.codeinsight.postfix.internal.AbstractRichStringBasedPostfixTemplate;
 import com.kogitune.intellij.codeinsight.postfix.utils.AndroidClassName;
 import org.jetbrains.annotations.NotNull;
 
@@ -14,7 +14,7 @@ import static com.intellij.codeInsight.template.postfix.util.JavaPostfixTemplate
  *
  * @author kikuchy
  */
-public class VisibleGoneTemplate extends RichChooserStringBasedPostfixTemplate {
+public class VisibleGoneTemplate extends AbstractRichStringBasedPostfixTemplate {
 
     public VisibleGoneTemplate() {
         this("vg");

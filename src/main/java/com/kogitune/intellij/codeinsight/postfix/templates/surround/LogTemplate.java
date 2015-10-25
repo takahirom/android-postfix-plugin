@@ -20,13 +20,12 @@ import com.intellij.codeInsight.template.impl.ConstantNode;
 import com.intellij.codeInsight.template.impl.MacroCallNode;
 import com.intellij.openapi.util.Condition;
 import com.intellij.psi.PsiElement;
-import com.kogitune.intellij.codeinsight.postfix.internal.RichChooserStringBasedPostfixTemplate;
+import com.kogitune.intellij.codeinsight.postfix.internal.AbstractRichStringBasedPostfixTemplate;
 import com.kogitune.intellij.codeinsight.postfix.macro.TagMacro;
 import com.kogitune.intellij.codeinsight.postfix.macro.ToStringIfNeedMacro;
 import com.kogitune.intellij.codeinsight.postfix.utils.AndroidPostfixTemplatesUtils;
 import org.jetbrains.annotations.NotNull;
 
-import static com.intellij.codeInsight.template.postfix.util.JavaPostfixTemplatesUtils.IS_NON_VOID;
 import static com.kogitune.intellij.codeinsight.postfix.utils.AndroidClassName.LOG;
 
 /**
@@ -34,22 +33,14 @@ import static com.kogitune.intellij.codeinsight.postfix.utils.AndroidClassName.L
  *
  * @author takahirom
  */
-public class LogTemplate extends RichChooserStringBasedPostfixTemplate {
-
-    public static final Condition<PsiElement> IS_NON_NULL = new Condition<PsiElement>() {
-        @Override
-        public boolean value(PsiElement element) {
-            return IS_NON_VOID.value(element) && !AndroidPostfixTemplatesUtils.isAnnotatedNullable(element);
-        }
-
-    };
+public class LogTemplate extends AbstractRichStringBasedPostfixTemplate {
 
     public LogTemplate() {
-        this("log");
+        this("log", "Log.d(TAG, expr);", AndroidPostfixTemplatesUtils.IS_NON_NULL);
     }
 
-    public LogTemplate(@NotNull String alias) {
-        super(alias, "Log.d(TAG, expr);", IS_NON_NULL);
+    public LogTemplate(@NotNull String name, @NotNull String example, @NotNull Condition<PsiElement> typeChecker) {
+        super(name, example, typeChecker);
     }
 
     @Override

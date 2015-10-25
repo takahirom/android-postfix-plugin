@@ -36,17 +36,13 @@ import static com.kogitune.intellij.codeinsight.postfix.utils.ImportUtils.hasImp
  */
 public class AndroidPostfixTemplatesUtils {
 
-    /**
-     * Condition that returns true if the element is a {@link CharSequence}.
-     */
-    public static final Condition<PsiElement> IS_CHAR_SEQUENCE = new Condition<PsiElement>() {
+
+    public static final Condition<PsiElement> IS_NON_NULL = new Condition<PsiElement>() {
         @Override
         public boolean value(PsiElement element) {
-            return element instanceof PsiExpression
-                    && isCharSequence(((PsiExpression) element).getType());
+            return IS_NON_VOID.value(element) && !AndroidPostfixTemplatesUtils.isAnnotatedNullable(element);
         }
     };
-
     /**
      * Condition that returns true if the element is a {@link java.util.Map}.
      */
@@ -57,7 +53,6 @@ public class AndroidPostfixTemplatesUtils {
                     && InheritanceUtil.isInheritor(((PsiExpression) element).getType(), CommonClassNames.JAVA_UTIL_MAP);
         }
     };
-
     /**
      * Condition that returns true if the element is an iterable.
      */
@@ -71,7 +66,6 @@ public class AndroidPostfixTemplatesUtils {
             return false;
         }
     };
-
     /**
      * Condition that returns true if the element is an iterable or an iterator or an array.
      */
@@ -85,7 +79,6 @@ public class AndroidPostfixTemplatesUtils {
             return false;
         }
     };
-
     /**
      * Condition that returns true if the element is an iterable or an iterator or an object array or a collection.
      */
@@ -102,9 +95,18 @@ public class AndroidPostfixTemplatesUtils {
                     return false;
                 }
             };
-
     @NonNls
     private static final String JAVA_LANG_CHAR_SEQUENCE = "java.lang.CharSequence";
+    /**
+     * Condition that returns true if the element is a {@link CharSequence}.
+     */
+    public static final Condition<PsiElement> IS_CHAR_SEQUENCE = new Condition<PsiElement>() {
+        @Override
+        public boolean value(PsiElement element) {
+            return element instanceof PsiExpression
+                    && isCharSequence(((PsiExpression) element).getType());
+        }
+    };
 
     @Contract("null -> false")
     public static boolean isCollection(@Nullable PsiType type) {

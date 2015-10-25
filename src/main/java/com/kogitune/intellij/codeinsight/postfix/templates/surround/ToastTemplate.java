@@ -19,14 +19,12 @@ import com.intellij.codeInsight.template.Template;
 import com.intellij.codeInsight.template.impl.ConstantNode;
 import com.intellij.codeInsight.template.impl.MacroCallNode;
 import com.intellij.codeInsight.template.macro.VariableOfTypeMacro;
-import com.intellij.openapi.util.Condition;
 import com.intellij.psi.PsiElement;
-import com.kogitune.intellij.codeinsight.postfix.internal.RichChooserStringBasedPostfixTemplate;
+import com.kogitune.intellij.codeinsight.postfix.internal.AbstractRichStringBasedPostfixTemplate;
 import com.kogitune.intellij.codeinsight.postfix.macro.ToStringIfNeedMacro;
 import com.kogitune.intellij.codeinsight.postfix.utils.AndroidPostfixTemplatesUtils;
 import org.jetbrains.annotations.NotNull;
 
-import static com.intellij.codeInsight.template.postfix.util.JavaPostfixTemplatesUtils.IS_NON_VOID;
 import static com.kogitune.intellij.codeinsight.postfix.utils.AndroidClassName.CONTEXT;
 import static com.kogitune.intellij.codeinsight.postfix.utils.AndroidClassName.TOAST;
 
@@ -35,22 +33,14 @@ import static com.kogitune.intellij.codeinsight.postfix.utils.AndroidClassName.T
  *
  * @author takahirom
  */
-public class ToastTemplate extends RichChooserStringBasedPostfixTemplate {
-
-    public static final Condition<PsiElement> IS_NON_NULL = new Condition<PsiElement>() {
-        @Override
-        public boolean value(PsiElement element) {
-            return IS_NON_VOID.value(element) && !AndroidPostfixTemplatesUtils.isAnnotatedNullable(element);
-        }
-
-    };
+public class ToastTemplate extends AbstractRichStringBasedPostfixTemplate {
 
     public ToastTemplate() {
         this("toast");
     }
 
     public ToastTemplate(@NotNull String alias) {
-        super(alias, "Toast.makeText(context, expr, Toast.LENGTH_SHORT).show();", IS_NON_NULL);
+        super(alias, "Toast.makeText(context, expr, Toast.LENGTH_SHORT).show();", AndroidPostfixTemplatesUtils.IS_NON_NULL);
     }
 
 
