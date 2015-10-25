@@ -77,12 +77,12 @@ public abstract class AbstractRichStringBasedPostfixTemplate extends PostfixTemp
         manager.startTemplate(editor, template, new TemplateEditingAdapter() {
             @Override
             public void templateFinished(Template template, boolean brokenOff) {
-                onFinishCompleteStatement(manager, editor, template);
+                onTemplateFinished(manager, editor, template);
             }
         });
     }
 
-    protected void onFinishCompleteStatement(TemplateManager manager, Editor editor, Template template) {
+    protected void onTemplateFinished(TemplateManager manager, Editor editor, Template template) {
         // format and add ;
         final ActionManager actionManager = ActionManagerImpl.getInstance();
         final String editorCompleteStatementText = "EditorCompleteStatement";

@@ -21,7 +21,7 @@ public class FindViewByIdVariableTemplate extends FindViewByIdTemplate {
     }
 
     @Override
-    protected void onFinishCompleteStatement(final TemplateManager manager, final Editor editor, Template template) {
+    protected void onTemplateFinished(final TemplateManager manager, final Editor editor, Template template) {
         final ActionManager actionManager = ActionManagerImpl.getInstance();
         final String editorCompleteStatementText = "IntroduceVariable";
         final AnAction action = actionManager.getAction(editorCompleteStatementText);

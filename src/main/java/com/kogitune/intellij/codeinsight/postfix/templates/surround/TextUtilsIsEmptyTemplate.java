@@ -37,7 +37,7 @@ public class TextUtilsIsEmptyTemplate extends AbstractRichStringBasedPostfixTemp
     }
 
     @Override
-    protected void onFinishCompleteStatement(TemplateManager manager, Editor editor, Template template) {
+    protected void onTemplateFinished(TemplateManager manager, Editor editor, Template template) {
         // nothing
         // Prevent complete statement
     }
