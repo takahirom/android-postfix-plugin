@@ -29,7 +29,7 @@ dependencies {
 
 }
 afterEvaluate { project ->
-    print tasks.each {
+    tasks.each {
         if (it.name.equals("patchPluginXml")) {
             it.enabled = false
         }
