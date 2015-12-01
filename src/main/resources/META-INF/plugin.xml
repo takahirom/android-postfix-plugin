@@ -17,7 +17,7 @@
 <idea-plugin version="2">
     <id>com.kogitune.intellij.androidPostfixCompletion</id>
     <name>Android Postfix Completion</name>
-    <version>1.1.8</version>
+  <version>2.0.1</version>
     <vendor email="takam.dev@gmail.com" url="https://github.com/takahirom/android-postfix-plugin">takahirom</vendor>
 
     <description><![CDATA[
