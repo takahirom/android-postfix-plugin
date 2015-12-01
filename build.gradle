@@ -9,7 +9,6 @@ apply plugin: 'java'
 sourceCompatibility = 1.6
 
 intellij {
-    version '14.1.4'
     plugins 'android'
     pluginName 'Android Postfix Completion'
 }
@@ -28,4 +27,11 @@ repositories {
 dependencies {
     testCompile 'junit:junit:4.12'
 
+}
+afterEvaluate { project ->
+    print tasks.each {
+        if (it.name.equals("patchPluginXml")) {
+            it.enabled = false
+        }
+    }
 }
