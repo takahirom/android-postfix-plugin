@@ -29,7 +29,7 @@ import com.intellij.facet.FacetManager;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.project.Project;
-import org.apache.http.util.TextUtils;
+import org.apache.commons.lang.StringUtils;
 import org.jetbrains.android.facet.AndroidFacet;
 import org.jetbrains.annotations.Nullable;
 
@@ -95,7 +95,7 @@ public class FindViewByIdMacro extends Macro {
             }
         }
         final String result = calculateResult.toString();
-        if (TextUtils.isEmpty(result)) {
+        if (StringUtils.isEmpty(result)) {
             return null;
         }
         if ("this".equals(result)) {
