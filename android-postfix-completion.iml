@@ -15,5 +15,32 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file:///Applications/Android Studio Canaly.app/Contents/plugins/android/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <NATIVE>
+          <root url="file:///Applications/Android Studio Canaly.app/Contents/plugins/android/lib" />
+        </NATIVE>
+        <SOURCES>
+          <root url="file:///Applications/Android Studio Canaly.app/Contents/plugins/android/lib" />
+        </SOURCES>
+        <jarDirectory url="file:///Applications/Android Studio Canaly.app/Contents/plugins/android/lib" recursive="false" />
+        <jarDirectory url="file:///Applications/Android Studio Canaly.app/Contents/plugins/android/lib" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file:///Applications/Android Studio Canaly.app/Contents/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file:///Applications/Android Studio Canaly.app/Contents/lib" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="org.easytesting:fest-reflect:1.4.1" level="project" />
   </component>
 </module>

@@ -1,5 +1,5 @@
 plugins {
-    id "org.jetbrains.intellij" version "0.0.22"
+    id "org.jetbrains.intellij" version "0.0.43"
 }
 
 apply plugin: 'org.jetbrains.intellij'
@@ -9,15 +9,19 @@ apply plugin: 'java'
 sourceCompatibility = 1.6
 
 intellij {
-    plugins 'android'
+//    plugins 'android'
+    updateSinceUntilBuild false
+//    version 'IC-15.0.5'
     pluginName 'Android Postfix Completion'
+    alternativeIdePath AndroidStudioPath
 }
+
 
 group 'com.kogitune.intellij.codeinsight'
 version '2.0.2'
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.6'
+    gradleVersion = '2.12'
 }
 
 repositories {
@@ -25,9 +29,26 @@ repositories {
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
+    compileOnly fileTree(dir: "lib", include: ['*.jar'])
+    compileOnly fileTree(dir: "$AndroidStudioPath/plugins/android/lib", include: ['*.jar'])
+    compileOnly fileTree(dir: "$AndroidStudioPath/lib", include: ['*.jar'])
+    compileOnly fileTree(dir: "$AndroidStudioPath/gradle/m2repository/com/android/tools/sdklib/25.2.0-alpha5/sdklib-25.2.0-alpha5.jar")
 
 }
+
+configurations {
+    compile.exclude module: 'idea'
+}
+
+
+task(verifySetup) << {
+
+    def ideaJar = "$AndroidStudioPath/lib/idea.jar"
+    if (!file(ideaJar).exists()) {
+        throw new GradleException("$ideaJar not found, set AndroidStudioPath in gradle.properties")
+    }
+}
+
 afterEvaluate { project ->
     tasks.each {
         if (it.name.equals("patchPluginXml")) {
