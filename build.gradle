@@ -29,6 +29,7 @@ repositories {
 }
 
 dependencies {
+    compile group: 'org.easytesting', name: 'fest-reflect', version: '1.4.1'
     compileOnly fileTree(dir: "lib", include: ['*.jar'])
     compileOnly fileTree(dir: "$AndroidStudioPath/plugins/android/lib", include: ['*.jar'])
     compileOnly fileTree(dir: "$AndroidStudioPath/lib", include: ['*.jar'])
