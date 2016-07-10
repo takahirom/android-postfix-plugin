@@ -9,11 +9,13 @@ apply plugin: 'java'
 sourceCompatibility = 1.6
 
 intellij {
-//    plugins 'android'
+    plugins 'android'
     updateSinceUntilBuild false
 //    version 'IC-15.0.5'
     pluginName 'Android Postfix Completion'
     alternativeIdePath AndroidStudioPath
+    updateSinceUntilBuild = false
+    sameSinceUntilBuild = false
 }
 
 
@@ -43,17 +45,9 @@ configurations {
 
 
 task(verifySetup) << {
-
     def ideaJar = "$AndroidStudioPath/lib/idea.jar"
     if (!file(ideaJar).exists()) {
         throw new GradleException("$ideaJar not found, set AndroidStudioPath in gradle.properties")
     }
 }
 
-afterEvaluate { project ->
-    tasks.each {
-        if (it.name.equals("patchPluginXml")) {
-            it.enabled = false
-        }
-    }
-}

@@ -18,8 +18,8 @@ package com.kogitune.intellij.codeinsight.postfix.macro;
 
 import com.android.ide.common.res2.ResourceItem;
 import com.android.resources.ResourceType;
-import com.android.tools.idea.rendering.LocalResourceRepository;
-import com.android.tools.idea.rendering.ProjectResourceRepository;
+import com.android.tools.idea.res.LocalResourceRepository;
+import com.android.tools.idea.res.ProjectResourceRepository;
 import com.intellij.codeInsight.template.*;
 import com.intellij.codeInsight.template.impl.ConstantNode;
 import com.intellij.codeInsight.template.impl.MacroCallNode;
@@ -29,20 +29,26 @@ import com.intellij.facet.FacetManager;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.project.Project;
+import org.fest.reflect.exception.ReflectionError;
+import org.fest.reflect.reference.TypeRef;
 import org.jetbrains.android.facet.AndroidFacet;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import static com.kogitune.intellij.codeinsight.postfix.utils.AndroidClassName.ACTIVITY;
 import static com.kogitune.intellij.codeinsight.postfix.utils.AndroidClassName.VIEW;
+import static org.fest.reflect.core.Reflection.*;
 
 /**
  * Created by takam on 2015/05/05.
  */
 public class FindViewByIdMacro extends Macro {
 
+
+    private HashMap<Object, Object> mFileIdMap;
 
     public String getName() {
         return "find_view";
@@ -70,7 +76,7 @@ public class FindViewByIdMacro extends Macro {
         final int index = resource.lastIndexOf(".");
         final String resourceId = resource.substring(index + 1);
 
-        String viewTag = getViewTag(project, resourceId);
+        String viewTag = getViewTag(project, resourceId, context);
         if (viewTag == null) {
             return defaultResult;
         }
@@ -111,7 +117,7 @@ public class FindViewByIdMacro extends Macro {
 
 
     @Nullable
-    public String getViewTag(Project project, String resourceId) {
+    public String getViewTag(Project project, String resourceId, ExpressionContext context) {
         final ModuleManager moduleManager = ModuleManager.getInstance(project);
         List<Module> modules = Arrays.asList(moduleManager.getModules());
         AndroidFacet androidFacet = null;
@@ -124,14 +130,31 @@ public class FindViewByIdMacro extends Macro {
             if (androidFacet == null) {
                 continue;
             }
-            final LocalResourceRepository resources = ProjectResourceRepository.getProjectResources(androidFacet, true);
-            List<ResourceItem> items = resources.getResourceItem(ResourceType.ID, resourceId);
-            if (items == null || items.size() == 0) {
-                continue;
+            try {
+                Class<?> oldResourceClass = type("com.android.tools.idea.rendering.ProjectResourceRepository").load();
+                Object resources = staticMethod("getProjectResources").withReturnType(type("com.android.tools.idea.rendering.LocalResourceRepository").load()).withParameterTypes(androidFacet.getClass(), boolean.class).in(oldResourceClass).invoke(androidFacet, true);
+                List<ResourceItem> items = method("getResourceItem").withReturnType(new TypeRef<List<ResourceItem>>() {
+                }).withParameterTypes(ResourceType.class, String.class).in(resources).invoke(ResourceType.ID, resourceId);
+                if (items == null || items.size() == 0) {
+                    continue;
+                }
+                final ResourceItem resourceItem = items.get(0);
+                final String viewTag = method("getViewTag").withReturnType(new TypeRef<String>() {
+                }).withParameterTypes(ResourceItem.class).in(resources).invoke(resourceItem);
+                return viewTag;
+            } catch (ReflectionError error) {
+                if (true)
+                    throw error;
+
+                final LocalResourceRepository resources = ProjectResourceRepository.getProjectResources(androidFacet, true);
+                List<ResourceItem> items = resources.getResourceItem(ResourceType.ID, resourceId);
+                if (items == null || items.size() == 0) {
+                    continue;
+                }
+                final ResourceItem resourceItem = items.get(0);
+                final String viewTag = resources.getViewTag(resourceItem);
+                return viewTag;
             }
-            final ResourceItem resourceItem = items.get(0);
-            final String viewTag = resources.getViewTag(resourceItem);
-            return viewTag;
         }
         return null;
     }
