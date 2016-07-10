@@ -20,7 +20,7 @@ intellij {
 
 
 group 'com.kogitune.intellij.codeinsight'
-version '2.0.2'
+version '2.0.3  '
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.12'
