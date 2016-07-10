@@ -143,9 +143,6 @@ public class FindViewByIdMacro extends Macro {
                 }).withParameterTypes(ResourceItem.class).in(resources).invoke(resourceItem);
                 return viewTag;
             } catch (ReflectionError error) {
-                if (true)
-                    throw error;
-
                 final LocalResourceRepository resources = ProjectResourceRepository.getProjectResources(androidFacet, true);
                 List<ResourceItem> items = resources.getResourceItem(ResourceType.ID, resourceId);
                 if (items == null || items.size() == 0) {
