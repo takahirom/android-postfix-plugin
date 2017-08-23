@@ -108,6 +108,17 @@ public class AndroidPostfixTemplatesUtils {
         }
     };
 
+    /**
+     * Condition that returns true if the element is a android.view.View.
+     */
+    public static final Condition<PsiElement> IS_VIEW = new Condition<PsiElement>() {
+        @Override
+        public boolean value(PsiElement element) {
+            return element instanceof PsiExpression
+                    && InheritanceUtil.isInheritor(((PsiExpression) element).getType(), AndroidClassName.VIEW.getClassName());
+        }
+    };
+
     @Contract("null -> false")
     public static boolean isCollection(@Nullable PsiType type) {
         return type != null && InheritanceUtil.isInheritor(type, CommonClassNames.JAVA_UTIL_COLLECTION);

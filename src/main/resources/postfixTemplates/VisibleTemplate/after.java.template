@@ -1,0 +1,7 @@
+import com.google.common.base.Preconditions;
+
+public class Foo {
+  void m(Object o) {
+      o.setVisibility(View.VISIBLE);
+  }
+}
