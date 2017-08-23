@@ -42,7 +42,10 @@ public class AndroidPostfixTemplateProvider extends JavaPostfixTemplateProvider 
                 new VisibleGoneTemplate(),
                 new FindViewByIdTemplate(),
                 new FindViewByIdVariableTemplate(),
-                new FindViewByIdFieldTemplate()
+                new FindViewByIdFieldTemplate(),
+                new VisibleTemplate(),
+                new InvisibleTemplate(),
+                new GoneTemplate()
         );
     }
 
