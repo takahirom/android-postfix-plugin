@@ -26,6 +26,7 @@ Plugin page
 Contributors
 ---------------
 * [kikuchy](http://www.github.com/kikuchy)
+* [Axlchen](http://www.github.com/Axlchen)
 
 How to run the repository code
 ----------------
