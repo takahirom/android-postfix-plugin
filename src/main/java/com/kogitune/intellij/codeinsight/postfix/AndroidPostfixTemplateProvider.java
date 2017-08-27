@@ -45,7 +45,9 @@ public class AndroidPostfixTemplateProvider extends JavaPostfixTemplateProvider 
                 new FindViewByIdFieldTemplate(),
                 new VisibleTemplate(),
                 new InvisibleTemplate(),
-                new GoneTemplate()
+                new GoneTemplate(),
+                new SnackbarTemplate(),
+                new SnackbarTemplate(true)
         );
     }
 
@@ -54,4 +56,6 @@ public class AndroidPostfixTemplateProvider extends JavaPostfixTemplateProvider 
     public Set<PostfixTemplate> getTemplates() {
         return templates;
     }
+
+
 }
