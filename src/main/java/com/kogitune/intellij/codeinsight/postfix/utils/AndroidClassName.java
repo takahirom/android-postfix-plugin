@@ -29,7 +29,8 @@ public enum AndroidClassName {
     TEXT_UTILS("android.text.TextUtils"),
     VIEW("android.view.View"),
     FRAGMENT("android.support.v4.app.Fragment"),
-    ACTIVITY("android.app.Activity");
+    ACTIVITY("android.app.Activity"),
+    SNACKBAR("android.support.design.widget.Snackbar");
 
 
     private final String fqClassName;

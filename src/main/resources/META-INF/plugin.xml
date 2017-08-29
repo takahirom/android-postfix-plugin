@@ -44,6 +44,22 @@
       <ul>
         <li> <b>.vg</b><br/><em>? View.VISIBLE : View.GONE;</em><br/><b> (expr) ? View.VISIBLE : View.GONE;</b></li>
       </ul>
+      <ul>
+        <li> <b>.vsb .invsb .gone</b><br/>
+             <em>Change View's visibility.</em><br/>
+             <b> view.setVisibility(View.VISIBLE);</b>
+             <b> view.setVisibility(View.INVISIBLE);</b>
+             <b> view.setVisibility(View.GONE);</b>
+             </li>
+      </ul>
+      <ul>
+        <li> <b>.snack .snackaction</b><br/>
+             <em>Show a Snackbar with or without an anction.</em><br/>
+             <b> Snackbar.make(view, expr, Snackbar.LENGTH_SHORT).show();</b><br/>
+             <b> Snackbar.make(view, expr, Snackbar.LENGTH_LONG).setAction(...).show();<br/>
+             </b>
+             </li>
+      </ul>
 
     ]]></description>
 

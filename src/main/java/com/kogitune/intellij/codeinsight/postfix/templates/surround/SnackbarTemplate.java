@@ -13,6 +13,7 @@ import com.kogitune.intellij.codeinsight.postfix.utils.AndroidPostfixTemplatesUt
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import static com.kogitune.intellij.codeinsight.postfix.utils.AndroidClassName.SNACKBAR;
 import static com.kogitune.intellij.codeinsight.postfix.utils.AndroidClassName.VIEW;
 
 
@@ -43,8 +44,9 @@ public class SnackbarTemplate extends AbstractRichStringBasedPostfixTemplate {
     @Nullable
     @Override
     public String getTemplateString(@NotNull PsiElement element) {
+        String prefix = getStaticPrefix(SNACKBAR, "make", element);
         if (mWithAction) {
-            return "Snackbar.make($view$, $expr$, Snackbar.LENGTH_LONG)\n" +
+            return prefix + "($view$, $expr$, Snackbar.LENGTH_LONG)\n" +
                     "                .setAction($actionText$, new View.OnClickListener() {\n" +
                     "                    @Override\n" +
                     "                    public void onClick(View v) {\n" +
@@ -53,7 +55,7 @@ public class SnackbarTemplate extends AbstractRichStringBasedPostfixTemplate {
                     "                })\n" +
                     "                .show();$END$";
         } else {
-            return "Snackbar.make($view$, $expr$, Snackbar.LENGTH_SHORT).show();$END$";
+            return prefix + "($view$, $expr$, Snackbar.LENGTH_SHORT).show();$END$";
         }
     }
 
