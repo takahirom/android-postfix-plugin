@@ -17,6 +17,9 @@ Available templates:
 | .find | Typed FindView | (ViewType) findViewById(expr) |
 | .isemp        | Check empty.                | TextUtils.isEmpty(expr)                    |
 | .vg        | Divide view visible or gone.                | (expr) ? View.VISIBLE : View.GONE                    |
+| .vsb </br>.invsb </br>.gone | Change View's visibility. | view.setVisibility(View.VISIBLE)</b> view.setVisibility(View.INVISIBLE)</b> view.setVisibility(View.GONE) |
+| .snack </br>.snackaction | Show a Snackbar with or without an anction. | Snackbar.make(view, expr, Snackbar.LENGTH_SHORT).show()<br/> Snackbar.make(view, expr, Snackbar.LENGTH_LONG).setAction(...).show()
+
 
 Plugin page
 ---------------
