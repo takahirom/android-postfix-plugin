@@ -37,7 +37,7 @@ How to run the repository code
 2. Run Gradle Wrapper
 In project root.
 ```
-./gradlew runIdea
+./gradlew runIde
 ```
 
 Thanks
